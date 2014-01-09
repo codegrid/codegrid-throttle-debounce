@@ -10,18 +10,18 @@ h2 {
   padding:.0 0 .5em;
 }
 form {
-  width:300px;
+  width:200px;
   float:left;
   border:1px solid #000;
   position:relative;
   padding:10px;
   margin:0 0 1em;
 }
-textarea {
-  width:290px;
-  height:3em;
-}
-textarea.error {
-  color:#fff;
-  background:red;
+form .result {
+  position:absolute;
+  left:240px;
+  top:0;
+  font-size:1.5em;
+  white-space:nowrap;
+  color:orange;
 }

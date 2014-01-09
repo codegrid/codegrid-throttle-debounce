@@ -11,24 +11,20 @@
 </head>
 <body>
 
-<h1>字数のカウントをthrottle／debounceするデモ</h1>
+<h1>submit後の処理をdebounce</h1>
 
 <h2>通常</h2>
 <form action="#" method="POST" id="form_normal">
-  <textarea></textarea>
-  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+  <div class="result">Please submit</div>
+  <div>名前: <input type="text"></div>
+  <div><input type="submit" value="submit"></div>
 </form>
 
-<h2>250msでthrottle</h2>
-<form action="#" method="POST" id="form_throttle">
-  <textarea></textarea>
-  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
-</form>
-
-<h2>250msでdebounce</h2>
+<h2>500msでdebounce</h2>
 <form action="#" method="POST" id="form_debounce">
-  <textarea></textarea>
-  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+  <div class="result">Please submit</div>
+  <div>名前: <input type="text"></div>
+  <div><input type="submit" value="submit"></div>
 </form>
 
 </body>

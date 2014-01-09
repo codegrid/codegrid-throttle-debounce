@@ -2,60 +2,28 @@
 $(function() {
 
   var $form = $('#form_normal');
-  var $textarea = $('textarea', $form);
-  var $count = $('.currentCharCount', $form);
+  var $result = $('.result', $form);
 
-  // 文字数をカウント
+  // メッセージを出す処理
 
-  var countChars = function() {
-    var count = $textarea.val().length;
-    $count.text(count);
-    // 50文字を超えたらエラー
-    if(count > 50) {
-      $textarea.addClass('error');
-    } else {
-      $textarea.removeClass('error');
-    }
+  var notify = function() {
+    $result.empty();
+    var $msg = $('<div>submit!!</div>');
+    $msg.css({ opacity: 0 });
+    $result.append($msg);
+    $msg.animate({ opacity: 1 }, 300);
   };
 
-  // イベントハンドラ
+  // サブミットハンドラ
 
-  var onKeyup = function() {
-    countChars();
+  var onSubmit = function(e) {
+    e.preventDefault();
+    notify();
   };
 
-  // イベントを設定
+  // イベント設定
 
-  $textarea.on('keyup', onKeyup);
-
-});
-
-// ====== throttle版 ======
-$(function() {
-
-  var $form = $('#form_throttle');
-  var $textarea = $('textarea', $form);
-  var $count = $('.currentCharCount', $form);
-
-  // 文字数をカウント
-
-  var countChars = function() {
-    var count = $textarea.val().length;
-    $count.text(count);
-    if(count > 50) {
-      $textarea.addClass('error');
-    } else {
-      $textarea.removeClass('error');
-    }
-  };
-
-  // イベントハンドラ
-
-  var onKeyup = $.throttle(250, countChars);
-
-  // イベントを設定
-
-  $textarea.on('keyup', onKeyup);
+  $form.on('submit', onSubmit);
 
 });
 
@@ -63,27 +31,31 @@ $(function() {
 $(function() {
 
   var $form = $('#form_debounce');
-  var $textarea = $('textarea', $form);
-  var $count = $('.currentCharCount', $form);
+  var $result = $('.result', $form);
 
-  // 文字数をカウント
+  // メッセージを出す処理
 
-  var countChars = function() {
-    var count = $textarea.val().length;
-    $count.text(count);
-    if(count > 50) {
-      $textarea.addClass('error');
-    } else {
-      $textarea.removeClass('error');
-    }
+  var notify = function() {
+    $result.empty();
+    var $msg = $('<div>submit!!</div>');
+    $msg.css({ opacity: 0 });
+    $result.append($msg);
+    $msg.animate({ opacity: 1 }, 300);
   };
 
-  // イベントハンドラ
+  // debounce版を作成
 
-  var onKeyup = $.debounce(250, countChars);
+  var debounced_notify = $.debounce(500, notify);
 
-  // イベントを設定
+  // サブミットハンドラ
 
-  $textarea.on('keyup', onKeyup);
+  var onSubmit = function(e) {
+    e.preventDefault();
+    debounced_notify(); // debounce版notifyを実行
+  };
+
+  // イベント設定
+
+  $form.on('submit', onSubmit);
 
 });
